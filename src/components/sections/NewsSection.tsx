@@ -54,28 +54,56 @@ const NewsSection: React.FC = () => {
         throw new Error('Не найдены необходимые колонки (photoUrl, title, description)');
       }
 
-      // Парсим данные
+      // Парсим данные с улучшенным CSV парсером
       const validatedData: NewsData[] = [];
       
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i].trim();
         if (!line) continue;
 
-        // Простой парсинг CSV (учитываем кавычки)
-        const values = line.match(/(".*?"|[^,]+)(?=\s*,|\s*$)/g)?.map(v => 
-          v.trim().replace(/^"|"$/g, '')
-        ) || [];
+        // Улучшенный парсинг CSV с учетом кавычек
+        const values: string[] = [];
+        let currentValue = '';
+        let insideQuotes = false;
+        
+        for (let j = 0; j < line.length; j++) {
+          const char = line[j];
+          
+          if (char === '"') {
+            insideQuotes = !insideQuotes;
+          } else if (char === ',' && !insideQuotes) {
+            values.push(currentValue.trim());
+            currentValue = '';
+          } else {
+            currentValue += char;
+          }
+        }
+        values.push(currentValue.trim()); // Добавляем последнее значение
 
         const photoUrl = values[photoUrlIndex]?.trim();
         const title = values[titleIndex]?.trim();
         const description = values[descriptionIndex]?.trim();
 
-        if (photoUrl && title && description) {
+        console.log(`📰 Строка ${i}: photoUrl="${photoUrl}", title="${title}", description="${description}"`);
+
+        // СТРОГАЯ ПРОВЕРКА: все три поля должны быть заполнены и photoUrl должен быть ссылкой
+        if (photoUrl && 
+            title && 
+            description && 
+            photoUrl !== '' && 
+            title !== '' && 
+            description !== '' &&
+            (photoUrl.startsWith('http://') || photoUrl.startsWith('https://') || photoUrl.startsWith('data:image/'))) {
+          
           validatedData.push({
             photoUrl,
             title,
             description,
           });
+          
+          console.log(`✅ Добавлена новость: "${title}"`);
+        } else {
+          console.log(`❌ Пропущена строка ${i}: не все поля заполнены или photoUrl не является ссылкой`);
         }
       }
 
