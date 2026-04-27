@@ -1,104 +1,110 @@
-# Fan-Fear Dashboard Website
+# Fan-Fear Dashboard
 
-Современное одностраничное веб-приложение (SPA) в стиле dashboard для fan-сообщества CS2 сервера Fear.
+🚀 Современный dashboard для сообщества Fan-Fear с премиальным дизайном и интеграцией с Google Sheets.
 
-## Технологический стек
+## ✨ Возможности
 
-- **Framework:** Next.js 14+ с App Router
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS с кастомной темой
-- **Icons:** React Icons
-- **Excel Parsing:** xlsx library (SheetJS)
-- **Fonts:** Inter, Montserrat
+- **Премиальный дизайн**: Glassmorphism, неоновые эффекты, анимации
+- **Google Sheets интеграция**: Автоматическая загрузка новостей, подписчиков и стафа
+- **Адаптивный дизайн**: Работает на всех устройствах
+- **Защита изображений**: Защита аватарок стафа от копирования
+- **Анимированный фон**: Частицы, градиенты, parallax эффекты
+- **Прелоадер**: Показывается только при первом посещении
 
-## Структура проекта
+## 🛠 Технологии
 
-```
-src/
-├── app/                    # Next.js App Router
-│   ├── globals.css        # Глобальные стили и Tailwind
-│   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Главная страница
-├── components/            # React компоненты
-│   ├── layout/           # Layout компоненты
-│   │   ├── DashboardLayout.tsx
-│   │   ├── Sidebar.tsx
-│   │   └── ContentArea.tsx
-│   ├── navigation/       # Навигация
-│   │   └── NavigationItem.tsx
-│   ├── sections/         # Разделы контента
-│   │   ├── AboutSection.tsx
-│   │   ├── NewsSection.tsx
-│   │   ├── StaffSection.tsx
-│   │   └── SocialSection.tsx
-│   ├── news/            # Компоненты новостей
-│   │   ├── ExcelLoader.tsx
-│   │   └── NewsCard.tsx
-│   ├── staff/           # Компоненты команды
-│   │   └── StaffCard.tsx
-│   └── social/          # Социальные сети
-│       └── SocialButton.tsx
-├── types/               # TypeScript типы
-│   └── index.ts
-└── constants/           # Константы и данные
-    └── data.ts
-```
+- **Framework**: Next.js 16.2.4
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Icons**: React Icons
+- **Deployment**: Vercel
 
-## Дизайн
+## 📊 Структура данных
 
-- **Тема:** Тёмная с фиолетовыми и синими акцентами
-- **Стиль:** Glassmorphism с полупрозрачными элементами
-- **Анимации:** Плавные переходы и hover эффекты
-- **Адаптивность:** Mobile-first подход
+Все данные загружаются из одной Google Sheets таблицы с колонками:
 
-## Установка и запуск
+| Колонка | Назначение | Пример |
+|---------|------------|--------|
+| `photoUrl` | Изображения новостей | `https://imgur.com/image.jpg` |
+| `title` | Заголовки новостей | `"Новый турнир"` |
+| `description` | Описания новостей | `"Описание турнира"` |
+| `platform` | Соцсети | `discord`, `telegram`, `youtube`, `twitch` |
+| `subscribers` | Подписчики | `1500`, `2300` |
+| `nickname` | Никнеймы стафа | `Tiny`, `Alt_Goty` |
+| `role` | Роли стафа | `Основатель`, `Зам` |
+| `avatar` | Аватары стафа | `https://imgur.com/avatar.jpg` |
+
+## 🚀 Быстрый старт
 
 ```bash
+# Клонирование репозитория
+git clone https://github.com/kejspinet-design/-FAN-FEAR.git
+cd -FAN-FEAR
+
 # Установка зависимостей
 npm install
 
 # Запуск в режиме разработки
 npm run dev
 
-# Сборка для продакшена
-npm run build
-
-# Запуск продакшен версии
-npm start
+# Открыть http://localhost:3000
 ```
 
-## Особенности
+## 📱 Разделы сайта
 
-### Glassmorphism эффекты
-Используется кастомный CSS класс `.glassmorphism` для создания полупрозрачных элементов с размытием.
+- **О проекте**: Информация о сообществе Fan-Fear
+- **Новости**: Карточки новостей из Google Sheets
+- **Стафф**: Команда проекта с аватарами и ролями
+- **Соц сети**: Кнопки соцсетей с количеством подписчиков
 
-### Кастомная Tailwind тема
-- `neon-purple`: #a855f7
-- `neon-blue`: #3b82f6
-- `dark-bg`: #0f0f1e
-- `glass-bg`: rgba(255, 255, 255, 0.05)
+## 🎨 Дизайн-система
 
-### Адаптивные сетки
-- Mobile: 1 колонка
-- Tablet: 2 колонки
-- Desktop: 3 колонки
+### Цвета
+- **Neon Purple**: `#a855f7`
+- **Neon Blue**: `#3b82f6`
+- **Dark Background**: `#0a0a1e`
 
-## Статус разработки
+### Эффекты
+- **Glassmorphism**: Полупрозрачные карточки с размытием
+- **Hover анимации**: Масштабирование, свечение, градиенты
+- **Particles**: Интерактивные частицы на фоне
+- **Parallax**: Эффект параллакса при движении мыши
 
-✅ **Задача 1: Настройка проекта и базовой структуры**
-- Создан Next.js проект с TypeScript
-- Настроен Tailwind CSS с кастомной темой
-- Установлены зависимости (xlsx, react-icons)
-- Создана базовая структура папок и файлов
-- Добавлены изображения в public папку
+## 📋 Инструкции
 
-🔄 **Следующие задачи:**
-- Реализация DashboardLayout и навигации
-- Создание разделов контента
-- Система загрузки новостей из Excel
-- Адаптивный дизайн и мобильная версия
+- **[Google Sheets Setup](GOOGLE_SHEETS_ИНСТРУКЦИЯ.md)**: Настройка таблицы данных
+- **[Vercel Deploy](VERCEL_DEPLOY.md)**: Деплой на Vercel
+- **[Image Protection](ЗАЩИТА_ИЗОБРАЖЕНИЙ.md)**: Защита изображений
 
-## Изображения
+## 🔧 Команды
 
-- **Логотип:** `zaidnii-fon-sdelai-eshche-chut-chut-fiol_xEi7AC6fTwynA3Z6uURDrA_4_XI4zezTdmLCqEfIgBtOA_cover_sd.jpeg`
-- **Аватар Santa2555555:** `вертикальное-изображение-симпатичная-смущенная-аниме-девушка-с-344137771.webp`
+```bash
+# Разработка
+npm run dev
+
+# Сборка
+npm run build
+
+# Продакшен
+npm start
+
+# Линтинг
+npm run lint
+
+# Тесты
+npm test
+```
+
+## 🌐 Деплой
+
+Проект автоматически деплоится на Vercel при каждом push в `main` ветку.
+
+**Live Demo**: [Будет доступно после деплоя]
+
+## 📄 Лицензия
+
+Разработано для сообщества Fan-Fear.
+
+---
+
+**Developed by Santa for Fan-Fear Community** 🎮
